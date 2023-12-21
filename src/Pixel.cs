@@ -1,6 +1,6 @@
 using System.Data.SqlTypes;
 
-namespace SymbolWinter;
+namespace SymbolEngine;
 
 public record Pixel(char Symbol, ConsoleColor Color)
 {

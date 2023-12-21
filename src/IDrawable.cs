@@ -1,4 +1,4 @@
-namespace SymbolWinter;
+namespace SymbolEngine;
 
 public interface IDrawable
 {

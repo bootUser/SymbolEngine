@@ -1,5 +1,5 @@
 ﻿
-namespace SymbolWinter;
+namespace SymbolEngine;
 
 public class Snowflake : SymbolObject
 {

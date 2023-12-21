@@ -1,4 +1,4 @@
-namespace SymbolWinter;
+namespace SymbolEngine;
 
 public struct Point(int x, int y)
 {

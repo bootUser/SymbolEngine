@@ -1,6 +1,4 @@
-using System.Linq.Expressions;
-
-namespace SymbolWinter;
+namespace SymbolEngine;
 
 public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDrawable
 {
@@ -17,7 +15,7 @@ public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDraw
         {
             var line = lines[y];
             for(int x = 0; x < width; x++)
-            
+                
         }
 
 
