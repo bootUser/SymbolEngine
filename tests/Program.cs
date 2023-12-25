@@ -1,8 +1,9 @@
 ﻿using SymbolEngine;
 
-var drawer = new ConsoleDrawer(200, 30);
+var drawer = new ConsoleDrawer(150, 26) {ShowCursor = false, ShowPivot = false};
 var snow = new List<Snowflake>();
-var tree = new Tree() {Position = (90,31)};
+var tree = new Tree() {Position = (90,25)};
+tree.Childrens.Add(new Garland());
 Console.Clear();
 while (true)
 {

@@ -3,6 +3,8 @@ namespace SymbolEngine;
 public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDrawable
 {
     public Point Pivot { get; init; } = pivot;
+    public bool ShowTransparentPixels {get;set;}
+    private Pixel _transparetnPixel => ShowTransparentPixels ? new Pixel('#', ConsoleColor.White) : new Pixel();
 
     public Pixel[,] GetPixels()
     {
@@ -14,18 +16,11 @@ public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDraw
         for (int y = 0; y < height; y++)
         {
             var line = lines[y];
-            var index = line.IndexOf(' ');
+            int index;
+            for(index = 0; index < line.Length && line[index] == ' '; index++);
             for (int x = 0; x < width; x++)
-            {
-                if (x >= line.Length)
-                    result[x, y] = new Pixel();
-                else if (x < index)
-                    result[x, y] = (line[x], color, true);
-                else
-                    result[x, y] = (line[x], color, false);
-            }
+                    result[x, y] = x >= line.Length || x < index ? _transparetnPixel : new Pixel(line[x], color);
         }
-
 
         return result;
     }

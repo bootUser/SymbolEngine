@@ -2,25 +2,17 @@ using SymbolEngine;
 
 public class Tree : SymbolObject
 {
-    private Pixel[,] _originalTexture;
     public Tree()
     {
-        var tree = File.ReadAllText("./tree.txt");
-        _originalTexture = new SymbolTexture(tree, ConsoleColor.DarkGreen, (14,26)).GetPixels();
-    }
-
-    class Temp(Func<Pixel[,]> getPixels) : IDrawable
-    {
-        public Point Pivot { get; init; } = (14,26);
-        public Pixel[,] GetPixels() => getPixels();
+        var tree = File.ReadAllText("./Textures/tree.txt");
+        Texture = new SymbolTexture(tree, ConsoleColor.DarkGreen, (13,24));
     }
 
     public void Blink()
     {
-        // 14 15 y 7
-        var newColor = (ConsoleColor) Random.Shared.Next(16);
-        _originalTexture[13, 6] = _originalTexture[13,6] with {Color = newColor};
-        _originalTexture[14, 6] = _originalTexture[14,6] with {Color = newColor};
-        Texture = new Temp(()=> _originalTexture);
+        foreach(var child in Childrens)
+            if(child is Garland garland)
+                garland.Blink();
+
     }
 }

@@ -1,13 +1,13 @@
 namespace SymbolEngine;
 
-public record Pixel(char Symbol, ConsoleColor Color, bool Transparent)
+public record Pixel(char Symbol, ConsoleColor Color)
 {
-    public Pixel() : this(' ', ConsoleColor.White, true)
+    public Pixel() : this('\0', default)
+    {
+    }
+    public Pixel(char symbol) : this(symbol, default)
     {
     }
 
-    public static implicit operator Pixel((char, ConsoleColor, bool) tuple)
-    {
-        return new Pixel(tuple.Item1, tuple.Item2, tuple.Item3);
-    }
+    public static implicit operator Pixel((char, ConsoleColor) tuple) => new Pixel(tuple.Item1, tuple.Item2);
 }
