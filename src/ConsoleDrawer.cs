@@ -4,7 +4,7 @@ public class ConsoleDrawer(int width, int height)
 {
     public int Width { get; init; } = width;
     public int Height { get; init; } = height;
-    public bool ShowCursor { get; set; } = false;
+    public bool ShowCursor { get; set; }
     public bool ShowPivot {get;set;}
 
     private Pixel[,] _lastFrame = CreateClearFrame(width, height);
@@ -19,7 +19,7 @@ public class ConsoleDrawer(int width, int height)
         return result;
     }
 
-    public void Draw()
+    internal void Draw()
     {
         Console.CursorVisible = ShowCursor;
         for (int x = 0; x < Width; x++)
@@ -36,11 +36,7 @@ public class ConsoleDrawer(int width, int height)
         _frame = CreateClearFrame(Width, Height);
     }
 
-    public void AddToRender(params SymbolObject[] objects)
-    {
-        foreach (var obj in objects)
-            PlaceObjectOnFrame(obj, null, (0, 0));
-    }
+    internal void AddToRender(params SymbolObject[] objects) => Array.ForEach(objects, obj => PlaceObjectOnFrame(obj, null, (0, 0)));
 
     private void PlaceObjectOnFrame(SymbolObject obj, SymbolObject? parent, Point parentOrigin)
     {

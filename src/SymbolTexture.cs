@@ -4,7 +4,7 @@ public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDraw
 {
     public Point Pivot { get; init; } = pivot;
     public bool ShowTransparentPixels {get;set;}
-    private Pixel _transparetnPixel => ShowTransparentPixels ? new Pixel('#', ConsoleColor.White) : new Pixel();
+    private Pixel _transparentPixel => ShowTransparentPixels ? new Pixel('#', ConsoleColor.White) : new Pixel();
 
     public Pixel[,] GetPixels()
     {
@@ -19,7 +19,7 @@ public class SymbolTexture(string text, ConsoleColor color, Point pivot) : IDraw
             int index;
             for(index = 0; index < line.Length && line[index] == ' '; index++);
             for (int x = 0; x < width; x++)
-                    result[x, y] = x >= line.Length || x < index ? _transparetnPixel : new Pixel(line[x], color);
+                    result[x, y] = x >= line.Length || x < index ? _transparentPixel : new Pixel(line[x], color);
         }
 
         return result;
